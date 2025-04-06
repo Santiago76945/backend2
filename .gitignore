@@ -1,0 +1,14 @@
+# Ignorar la carpeta de dependencias de Node.js
+node_modules/
+
+# Archivos de log
+*.log
+logs/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Otras carpetas o archivos temporales (opcional)
+tmp/
+temp/
