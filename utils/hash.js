@@ -1,3 +1,5 @@
+// utils/hash.js
+
 import bcrypt from 'bcrypt';
 
 // Hashear contraseña

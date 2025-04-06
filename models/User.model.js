@@ -1,3 +1,5 @@
+// models/User.model.js
+
 import mongoose from 'mongoose';
 
 const userCollection = 'users';

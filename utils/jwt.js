@@ -1,3 +1,5 @@
+// utils/jwt.js
+
 import jwt from 'jsonwebtoken';
 
 // Clave secreta para firmar el token (en producción, guárdala en variables de entorno)

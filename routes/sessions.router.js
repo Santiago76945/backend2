@@ -1,3 +1,5 @@
+// routes/sessions.router.js
+
 import { Router } from 'express';
 import passport from 'passport';
 import { generateToken } from '../utils/jwt.js';

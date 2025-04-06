@@ -1,9 +1,13 @@
+// index.js
+
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import initializePassport from './config/passport.config.js';
 import sessionsRouter from './routes/sessions.router.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -15,9 +19,9 @@ app.use(cookieParser());
 initializePassport();
 app.use(passport.initialize());
 
-// Conexión a la base de datos
+// Conexión a la base de datos usando la variable de entorno
 mongoose
-  .connect('mongodb://localhost:27017/backend2-coder', {
+  .connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -27,8 +31,8 @@ mongoose
 // Rutas
 app.use('/api/sessions', sessionsRouter);
 
-// Puesta en marcha del servidor
-const PORT = 8080;
+// Puesta en marcha del servidor usando la variable de entorno para el puerto
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

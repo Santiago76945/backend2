@@ -1,3 +1,5 @@
+// config/passport.config.js
+
 import passport from 'passport';
 import local from 'passport-local';
 import jwt from 'passport-jwt';
