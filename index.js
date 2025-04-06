@@ -1,15 +1,34 @@
-// index.js
-const express = require('express');
+import express from 'express';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import initializePassport from './config/passport.config.js';
+import sessionsRouter from './routes/sessions.router.js';
+
 const app = express();
-const petsRouter = require('./pets.router');
 
-// Middleware para parsear JSON
+// Middlewares básicos
 app.use(express.json());
+app.use(cookieParser());
 
-// Montamos el router de mascotas en /api/pets
-app.use('/api/pets', petsRouter);
+// Inicializar Passport
+initializePassport();
+app.use(passport.initialize());
 
-const PORT = process.env.PORT || 3000;
+// Conexión a la base de datos
+mongoose
+  .connect('mongodb://localhost:27017/backend2-coder', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('DB conectada'))
+  .catch((error) => console.error('Error al conectar DB:', error));
+
+// Rutas
+app.use('/api/sessions', sessionsRouter);
+
+// Puesta en marcha del servidor
+const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
