@@ -1,17 +1,23 @@
 backend2-coder/
-├── config/
-│   └── passport.config.js         # Configuración de Passport para autenticación
-├── middlewares/
-│   └── cookieExtractor.js         # Middleware para extraer cookies
-├── models/
-│   └── User.model.js              # Modelo de usuario para base de datos (probablemente Mongoose)
-├── routes/
-│   └── sessions.router.js         # Rutas relacionadas con sesiones de usuario
-├── utils/
-│   ├── hash.js                    # Funciones para hashear contraseñas u otros datos
-│   └── jwt.js                     # Funciones relacionadas con JWT (crear/verificar)
-├── .env                           # Variables de entorno (no se sube a git)
-├── .gitignore                     # Lista de archivos/carpetas a ignorar por git
-├── index.js                       # Punto de entrada de tu aplicación
-├── package.json                   # Configuración del proyecto y dependencias
-├── package-lock.json              # Resolución exacta de versiones instaladas
+├── src/
+│   ├── config/
+│   │   └── passport.config.js
+│   ├── middlewares/
+│   │   └── cookieExtractor.js
+│   ├── models/
+│   │   └── User.model.js
+│   ├── routes/
+│   │   └── sessions.router.js
+│   ├── utils/
+│   │   ├── hash.js
+│   │   ├── jwt.js
+│   │   └── index.js
+│   └── index.js
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── tree.txt
+└── consignas.txt
+└── devoluciones.txt

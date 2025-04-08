@@ -1,0 +1,54 @@
+PRIMERA ENTREGA DEL PROYECTO FINAL
+
+Se debe implementar en el proyecto ecommerce un CRUD de usuarios, junto con un sistema de autorización y autenticación.
+
+----------------------------------------
+MODELO DE USUARIO (User)
+----------------------------------------
+
+Crear un modelo "User" con los siguientes campos:
+
+- first_name: String
+- last_name: String
+- email: String (único)
+- age: Number
+- password: String (Hash)
+- cart: Id con referencia a Carts
+- role: String (default: 'user')
+
+----------------------------------------
+SEGURIDAD
+----------------------------------------
+
+- Encriptar la contraseña del usuario mediante el paquete bcrypt (utilizar el método hashSync).
+
+----------------------------------------
+AUTENTICACIÓN Y AUTORIZACIÓN
+----------------------------------------
+
+- Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios.
+- Implementar un sistema de login del usuario que trabaje con JWT.
+
+----------------------------------------
+RUTA "CURRENT" Y COOKIES
+----------------------------------------
+
+- Desarrollar una estrategia "current" para extraer la cookie que contiene el token y, con dicho token, obtener el usuario asociado.
+  - Si el token está presente, devolver el usuario asociado.
+  - Si no, devolver un error de passport (utilizar un extractor de cookie).
+
+- Agregar al router /api/sessions/ la ruta /current:
+  - Esta ruta validará al usuario logueado y devolverá sus datos en una respuesta.
+  - (Datos asociados al JWT)
+
+----------------------------------------
+FORMATO DE ENTREGA
+----------------------------------------
+
+- Link al repositorio de GitHub con el proyecto completo, sin la carpeta node_modules.
+
+----------------------------------------
+SUGERENCIA
+----------------------------------------
+
+- Ver el video explicativo proporcionado por el curso.

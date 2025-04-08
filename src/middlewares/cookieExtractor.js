@@ -1,4 +1,4 @@
-// middlewares/cookieExtractor.js
+// src/middlewares/cookieExtractor.js
 
 export const cookieExtractor = (req) => {
     let token = null;

@@ -1,4 +1,4 @@
-// index.js
+// src/index.js
 
 import express from 'express';
 import mongoose from 'mongoose';

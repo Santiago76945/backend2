@@ -1,11 +1,11 @@
-// config/passport.config.js
+// src/config/passport.config.js
 
 import passport from 'passport';
 import local from 'passport-local';
 import jwt from 'passport-jwt';
 import { UserModel } from '../models/User.model.js';
-import { createHash, isValidPassword } from '../../utils/hash.js';
-import { SECRET_KEY } from '../../utils/jwt.js';
+import { createHash, isValidPassword } from '../utils/hash.js';
+import { SECRET_KEY } from '../utils/jwt.js';
 import { cookieExtractor } from '../middlewares/cookieExtractor.js';
 
 const LocalStrategy = local.Strategy;
