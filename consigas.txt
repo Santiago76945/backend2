@@ -1,54 +1,83 @@
-PRIMERA ENTREGA DEL PROYECTO FINAL
+Entrega Final de tu Proyecto
 
-Se debe implementar en el proyecto ecommerce un CRUD de usuarios, junto con un sistema de autorización y autenticación.
+Contexto
+Se profundizará sobre los roles de los usuarios, las autorizaciones y sobre la lógica de compra.
 
-----------------------------------------
-MODELO DE USUARIO (User)
-----------------------------------------
+Objetivos
+Objetivo general
 
-Crear un modelo "User" con los siguientes campos:
+Profesionalizar el servidor desarrollado en la primera pre-entrega.
 
-- first_name: String
-- last_name: String
-- email: String (único)
-- age: Number
-- password: String (Hash)
-- cart: Id con referencia a Carts
-- role: String (default: 'user')
+Objetivos específicos
 
-----------------------------------------
-SEGURIDAD
-----------------------------------------
+Aplicar una arquitectura profesional para el servidor.
 
-- Encriptar la contraseña del usuario mediante el paquete bcrypt (utilizar el método hashSync).
+Incorporar buenas prácticas: patrones de diseño, mailing, variables de entorno, etc.
 
-----------------------------------------
-AUTENTICACIÓN Y AUTORIZACIÓN
-----------------------------------------
+Formato de entrega
+Link al repositorio de GitHub con todo el proyecto (sin la carpeta node_modules).
 
-- Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios.
-- Implementar un sistema de login del usuario que trabaje con JWT.
+Archivo .env con todas las variables necesarias para correr la aplicación.
 
-----------------------------------------
-RUTA "CURRENT" Y COOKIES
-----------------------------------------
+Se debe entregar
+Persistencia “limpia”
 
-- Desarrollar una estrategia "current" para extraer la cookie que contiene el token y, con dicho token, obtener el usuario asociado.
-  - Si el token está presente, devolver el usuario asociado.
-  - Si no, devolver un error de passport (utilizar un extractor de cookie).
+Modificar la capa de persistencia para aplicar los conceptos de DAO y DTO.
 
-- Agregar al router /api/sessions/ la ruta /current:
-  - Esta ruta validará al usuario logueado y devolverá sus datos en una respuesta.
-  - (Datos asociados al JWT)
+Repository Pattern
 
-----------------------------------------
-FORMATO DE ENTREGA
-----------------------------------------
+Implementar el patrón Repository para orquestar el acceso a datos en la lógica de negocio.
 
-- Link al repositorio de GitHub con el proyecto completo, sin la carpeta node_modules.
+Ruta /current segura
 
-----------------------------------------
-SUGERENCIA
-----------------------------------------
+Modificar el endpoint /current para no exponer información sensible.
 
-- Ver el video explicativo proporcionado por el curso.
+Devolver únicamente un DTO con los campos estrictamente necesarios del usuario.
+
+Middleware de autorización
+
+Crear un middleware que, junto con la estrategia “current”, restrinja el acceso a los endpoints:
+
+Administrador: sólo puede crear, actualizar y eliminar productos.
+
+Usuario: sólo puede agregar productos a su propio carrito.
+
+Lógica de compra
+
+En el router de carritos, implementar la ruta
+
+ruby
+Copy
+Edit
+POST /api/carts/:cid/purchase
+que finalice el proceso de compra de ese carrito, tal que:
+
+Corroborar stock al momento de la compra:
+
+Si hay stock suficiente para la cantidad pedida, restarlo y seguir.
+
+Si no, excluir ese producto de la compra.
+
+Resultado:
+
+Devolver un arreglo con los IDs de los productos no procesados por falta de stock.
+
+El carrito del usuario, al terminar, debe contener sólo los productos que no pudieron comprarse.
+
+Servicio de Tickets
+
+Integrar un servicio que genere un Ticket con los datos de la compra.
+
+Modelo Ticket (Mongo):
+
+id (autogenerado)
+
+code: string único autogenerado
+
+purchase_datetime: fecha y hora exactas de la compra
+
+amount: número, total de la compra
+
+purchaser: correo del usuario comprador
+
+Al cumplimentar la compra, crear y almacenar el ticket.
